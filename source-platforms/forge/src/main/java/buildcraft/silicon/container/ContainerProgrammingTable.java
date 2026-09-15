@@ -18,7 +18,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.network.NetworkEvent;
 
 public class ContainerProgrammingTable extends ContainerBCTile<TileProgrammingTable_Neptune> {
-    public static final int NET_SELECT_OPTION = 10;
+    public static final int NET_SELECT_OPTION = NET_DATA;
 
     public ContainerProgrammingTable(int containerId, Inventory playerInventory, FriendlyByteBuf buf) {
         this(containerId, playerInventory, new ItemHandlerSimple(1), new ItemHandlerSimple(1),

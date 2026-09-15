@@ -8,7 +8,7 @@
   ],
   "ingredients": [
     {
-      "tag": "c:glass"
+      "tag": "c:glass_blocks"
     },
     {
       "item": "minecraft:iron_bars"

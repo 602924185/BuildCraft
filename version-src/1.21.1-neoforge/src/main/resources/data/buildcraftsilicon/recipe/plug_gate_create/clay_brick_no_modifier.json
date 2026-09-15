@@ -6,7 +6,7 @@
       "item": "buildcrafttransport:plug_blocker"
     },
     "m": {
-      "tag": "c:ingots/brick"
+      "item": "minecraft:brick"
     },
     "r": {
       "tag": "c:dusts/redstone"

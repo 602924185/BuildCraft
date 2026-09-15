@@ -67,6 +67,13 @@ for platform in ("forge", "neoforge"):
         "tile.cycleRecipe(1)",
     )
     require(
+        f"{base}/buildcraft/silicon/container/ContainerProgrammingTable.java",
+        "NET_SELECT_OPTION = NET_DATA;",
+        "sendMessage(NET_SELECT_OPTION",
+        "id == NET_SELECT_OPTION",
+        "tile.selectOption(buffer.readVarInt())",
+    )
+    require(
         f"source-platforms/{platform}/src/gametest/java/buildcraft/gametest/WorkbenchRollbackGameTests.java",
         "failedGridClearNeverOverwritesTransientItems",
         "crafting.setItem(0, new ItemStack(Items.DIAMOND))",
@@ -125,6 +132,22 @@ require(
     "minecraft:deep_cold_ocean",
 )
 
+# 1.21.1 NeoForge committed resources must stay aligned with the current datagen provider.
+require(
+    "version-src/1.21.1-neoforge/src/main/resources/data/buildcraftsilicon/recipe/plug_gate_create/clay_brick_no_modifier.json",
+    '"item": "minecraft:brick"',
+)
+require(
+    "version-src/1.21.1-neoforge/src/main/resources/data/buildcraftsilicon/recipe/plug_gate_create/nether_brick_no_modifier.json",
+    '"item": "minecraft:nether_brick"',
+)
+for rel in (
+    "version-src/1.21.1-neoforge/src/main/resources/data/buildcraftsilicon/recipe/assembly/lens/lens_regular.json",
+    "version-src/1.21.1-neoforge/src/main/resources/data/buildcraftsilicon/recipe/assembly/lens/lens_filter.json",
+):
+    require(rel, '"tag": "c:glass_blocks"')
+
+
 if errors:
     for error in errors:
         print("ERROR:", error)
@@ -135,3 +158,5 @@ print(" - Workbench rollback cannot overwrite transient crafting items")
 print(" - conflicting crafting outputs have a persistent GUI selector without unsafe Forge recipe casts")
 print(" - Construction Marker and Flood Gate interaction parity is guarded")
 print(" - dead custom oil biomes and their legacy Forge tag hooks are removed")
+print(" - Programming Table selection packets use an allocated container message ID")
+print(" - 1.21.1 gate and clear-lens recipes use live NeoForge ingredients/tags")
